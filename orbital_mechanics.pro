@@ -1,5 +1,5 @@
 ; Program for orbital elements calculation - Have fun!
-$ Prepared by A. Emran, PhD Student in Space and Planetary Sciences, U of A.
+$ Prepared by A. Emran, PhD Student in Space and Planetary Sciences, University of Arkansas.
 $ Email: alemran@uark.edu; Ph: (334)-400-9371.
 
 PRO Orbital_mechanics
@@ -161,7 +161,6 @@ PRO Orbital_mechanics
   margin = mp*.1 ; 10 percent margin
   total = mp+margin
     print, "Propellent mass required and margin", mp, margin, total
-    
-      
+          
  ; DONE 
  END
