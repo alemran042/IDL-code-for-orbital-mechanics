@@ -1,19 +1,21 @@
-; Program for orbital elements calculation - Have fun!
+; Program for orbital elements calculation and designing a interplanetary mission - Have fun!
+$ The example 200 days planetary mission design from Earth to Mars (see the celestial ephemeris)
 $ Prepared by A. Emran, PhD Student in Space and Planetary Sciences, University of Arkansas.
-$ Email: alemran@uark.edu; Ph: (334)-400-9371.
+$ Email: alemran@uark.edu; Ph: +1 (334)-400-9371.
 
-PRO Orbital_mechanics
+PRO Orbital_Mechanics_Mission_Design
 
- ;#DESIGN OF THE TRANSFER ELLIPSE (FIG. 3.56; PAGE 121)
- ; Let, the radius of earth and Mars are r1 and r2, respectively
+ ;#DESIGN OF THE TRANSFER ELLIPSE 
+ $(ref. Elements of Spacecraft Design (AIAA Education Series) by C. D. Brown; FIG. 3.56; PAGE 121)
+ ; Let, the radius of Earth and Mars are r1 and r2, respectively
   r1=149905909.7 ; in km
-  r2=206671197.0 ; in km
+  r2=206671197.0 ; in km  
   
- ; Given that the longitude of Earth (Lo) at launch and Mars (Lm)at arrival
+ ; Given that the longitude of Earth (Lo) at launch and Mars (Lm) at arrival
   Lo=181.444 ; celestial longitude in degree
   Lm=333.221 ; celestial longitude in degree
   
- ; Let, the line of apside = x ; (in degree)
+ ; Let, the line of apsides = x ; (in degree)
   $ true anomaly at Earth is ta_e and Mars is ta_m
   x=161.714 ; in degree
   print, "Line of apsides", x
@@ -25,13 +27,13 @@ PRO Orbital_mechanics
     IF (ta_m GT 180) THEN ta_m=((360-Lm)+x) ELSE BEGIN
       ta_m=abs(Lm-x)
       ENDELSE
-    Print, "True anomaly at departure and arrival", ta_e, ta_m ;return the value of true anomaly at Earth and Mars
+    Print, "True anomaly at departure and arrival", ta_e, ta_m ; return the value of true anomaly at Earth and Mars
       
- ; Consider, the ecentricity of transfer ecllipse is e (unit less)
+ ; Consider, the ecentricity of transfer ecllipse is e (unitless)
   e=(r2-r1)/((r1*cos(!dtor*ta_e))-(r2*cos(!dtor*ta_m))) ; system variables !dtor and !radeg convert between rad and deg
     print, "Ecentricity", e ; return the value of e
  
- ; Find the radius of perapsis = rp (in km)
+ ; Find the radius of periapsis = rp (in km)
   rp= (r1*(1+e*cos(!dtor*ta_e)))/(1+e)
     print, "Radius of periapsis", rp ; return the value of rp
     
@@ -123,7 +125,7 @@ PRO Orbital_mechanics
   VEM=sqrt(C_3) ; velocity at infinity on the arrival hyperbola velocity at infinity on the arrival hyperbola
     print, "Alpha, C_3, and velocity at infinity on the arrival hyperbola", aba, C_3, VEM
     
-  ;# Elements of arrival hyperbola
+  ;# Elements of arrival hyperbola at Mars
    $ Vp=the velocity at periapsis of the approach hyperbola
    $ a_hy = Semi-majoraxis of the approach hyperbola
    $ b_hy = Semi-minor axis of the approach hyperbola
@@ -145,13 +147,13 @@ PRO Orbital_mechanics
   v_req = vp-v_cr ; delta v
     print, "Velocity of circular orbit and velocity change required", v_cr, v_req
       
-  ;# On-orbit dry mass
+  ;# On-orbit dry mass of the spacecraft
   ;Exterpolation of the figure 2.7 (page 24) the on-orbit dry mass is for a  Phase-A estimated sciences payload mass of 400 kg
   payload = 400 ; in kg
   dry_mass = (payload+6.7333)/0.1299
     print, "On-orbit dry mass", dry_mass
       
-  ;# Propulsion system and propultion mass
+  ;# Propulsion system and propulsion mass required for the spacecraft 
   ;Mono-propellant system
   ;mp = Propellant mass required
   Isp = 259 ; (in sec) since we are using Mono-propellant system
