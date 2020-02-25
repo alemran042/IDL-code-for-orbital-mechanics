@@ -1,4 +1,4 @@
-; Program for orbital elements calculation and designing a interplanetary mission - Have fun!
+; Program for orbital elements calculation and designing an interplanetary mission - Have fun!
 $ The example 200 days planetary mission design from Earth to Mars (see the celestial ephemeris)
 $ Prepared by A. Emran, PhD Student in Space and Planetary Sciences, University of Arkansas.
 $ Email: alemran@uark.edu; Ph: +1 (334)-400-9371.
